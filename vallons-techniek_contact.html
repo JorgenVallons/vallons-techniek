@@ -757,6 +757,8 @@
           emailField.classList.add('error');
           const err = contactForm.querySelector('.field-error[data-for="email"]');
           if (err) { err.textContent = 'Vul een geldig e-mailadres in (bv. naam@voorbeeld.be).'; err.classList.add('visible'); }
+          const inlineErr = document.getElementById('form-error-inline');
+          if (inlineErr) { inlineErr.textContent = 'Vul een geldig e-mailadres in (bv. naam@voorbeeld.be).'; inlineErr.classList.add('visible'); }
         }
       });
     }

@@ -409,7 +409,10 @@
   <div class="contact-form-wrap reveal">
     <h2>Stuur ons een bericht</h2>
     <p class="sub">Heeft u een vraag, wenst u een offerte of wilt u gewoon even kennismaken? We horen graag van u.</p>
-    <form class="contact-form" action="https://formspree.io/f/mojpjjll" method="POST">
+    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="9937b940-aa1f-47df-977b-7d8f30e2a283">
+        <input type="hidden" name="subject" value="Nieuw contactformulier - Vallons Techniek">
+        <input type="hidden" name="from_name" value="Vallons Techniek Website">
       <div class="form-row">
         <div class="form-group">
           <label>Voornaam</label>
@@ -768,7 +771,7 @@
       submitBtn.textContent = 'Bezig met versturen...';
 
       try {
-        const response = await fetch('https://formspree.io/f/mojpjjll', {
+        const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           body: new FormData(contactForm),
           headers: { 'Accept': 'application/json' }

@@ -311,6 +311,33 @@
       margin-top: 0.5rem;
     }
     #form-error.visible { display: block; }
+
+    .form-submit-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .form-error-inline {
+      display: none;
+      align-items: center;
+      gap: 0.4rem;
+      color: #c0392b;
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: rgba(224,82,82,0.08);
+      border: 1px solid rgba(224,82,82,0.3);
+      border-radius: 8px;
+      padding: 0.5rem 0.85rem;
+    }
+    .form-error-inline.visible {
+      display: flex;
+    }
+    .form-error-inline::before {
+      content: '⚠';
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
   </style>
 </head>
 <body>
@@ -455,10 +482,13 @@
         <label>Bericht</label>
         <textarea name="bericht"placeholder="Vertel ons kort over uw situatie en wensen..."></textarea>
       </div>
-      <button type="submit" class="form-submit">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-        Verstuur bericht
-      </button>
+      <div class="form-submit-row">
+        <button type="submit" class="form-submit">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          Verstuur bericht
+        </button>
+        <div id="form-error-inline" class="form-error-inline" aria-live="polite"></div>
+      </div>
       <div id="form-error"></div>
       <div id="form-success">✓ Bedankt! Wij nemen zo spoedig mogelijk contact op.</div>
     </form>
@@ -715,6 +745,8 @@
         field.classList.remove('error');
         err.classList.remove('visible');
         document.getElementById('form-error')?.classList.remove('visible');
+        const inlineErr = document.getElementById('form-error-inline');
+        if (inlineErr) inlineErr.classList.remove('visible');
       });
     });
 
@@ -759,6 +791,11 @@
           errorSummary.textContent = 'Gelieve alle verplichte velden correct in te vullen.';
           errorSummary.classList.add('visible');
         }
+        const inlineErr = document.getElementById('form-error-inline');
+        if (inlineErr) {
+          inlineErr.textContent = 'Gelieve alle verplichte velden correct in te vullen.';
+          inlineErr.classList.add('visible');
+        }
         // Scroll naar eerste fout
         const firstError = contactForm.querySelector('.error');
         if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -781,6 +818,8 @@
           const successEl = document.getElementById('form-success');
           if (successEl) successEl.style.display = 'block';
           if (errorSummary) errorSummary.classList.remove('visible');
+          const inlineErr = document.getElementById('form-error-inline');
+          if (inlineErr) inlineErr.classList.remove('visible');
           contactForm.reset();
           submitBtn.disabled = false;
           submitBtn.textContent = 'Verstuur aanvraag →';

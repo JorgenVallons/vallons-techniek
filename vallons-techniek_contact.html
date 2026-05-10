@@ -423,7 +423,7 @@
       <div class="form-row">
         <div class="form-group">
           <label>E-mail</label>
-          <input type="email" name="email" placeholder="jan@voorbeeld.be" required />
+          <input type="email" name="email" placeholder="jan@voorbeeld.be" required pattern="[^\s@]+@[^\s@]+\.[^\s@]{2,}" title="Vul een geldig e-mailadres in met een geldige extensie (bv. .be, .com)" />
         </div>
         <div class="form-group">
           <label>Telefoonnummer</label>
@@ -719,7 +719,7 @@
     const emailField = contactForm.querySelector('input[name="email"]');
     if (emailField) {
       emailField.addEventListener('blur', () => {
-        if (emailField.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value)) {
+        if (emailField.value && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(emailField.value)) {
           emailField.classList.add('error');
           const err = contactForm.querySelector('.field-error[data-for="email"]');
           if (err) { err.textContent = 'Vul een geldig e-mailadres in (bv. naam@voorbeeld.be).'; err.classList.add('visible'); }
@@ -740,7 +740,7 @@
           field.classList.add('error');
           if (err) err.classList.add('visible');
           valid = false;
-        } else if (field.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
+        } else if (field.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(field.value)) {
           field.classList.add('error');
           if (err) { err.textContent = 'Vul een geldig e-mailadres in (bv. naam@voorbeeld.be).'; err.classList.add('visible'); }
           valid = false;

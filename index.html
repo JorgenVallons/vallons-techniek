@@ -1,15 +1,47 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vallons Techniek – Zonnepanelen, Laadpalen & Energieopslag | Vlaams-Brabant & Antwerpen</title>
   <meta name="description" content="Vallons Techniek installeert zonnepanelen, laadpalen, batterijopslag en off-grid systemen in Vlaams-Brabant en Antwerpen. Vraag nu een gratis offerte aan." />
-  <link rel="canonical" href="https://www.vallons-techniek.be/" />
+
+  <!--
+    ══════════════════════════════════════════════════════════
+    BELANGRIJK: index.html is NIET de echte homepage.
+    De echte homepage is vallons-techniek_over_ons.html.
+
+    GitHub Pages kan geen server-side 301-redirect uitvoeren.
+    De ENIGE SEO-veilige oplossing is:
+      1. Hernoem vallons-techniek_over_ons.html → index.html
+         (zodat https://www.vallons-techniek.be/ de echte pagina laadt)
+      2. Verwijder dit bestand
+      3. Pas alle interne links op de andere pagina's aan
+
+    ZOLANG dat niet gebeurd is, staat hieronder een
+    JavaScript-redirect als noodoplossing. Dit is NIET ideaal
+    voor SEO maar beter dan meta-refresh of noindex.
+    ══════════════════════════════════════════════════════════
+  -->
+
+  <!-- Canonical wijst naar de echte pagina, NIET naar index.html -->
+  <link rel="canonical" href="https://www.vallons-techniek.be/vallons-techniek_over_ons.html" />
+
+  <!-- Vertel Google: indexeer deze pagina NIET, maar volg de link wel -->
   <meta name="robots" content="noindex, follow" />
-  <meta http-equiv="refresh" content="0; url=vallons-techniek_over_ons.html">
+
+  <!-- Sitemap & Favicons -->
   <link rel="sitemap" type="application/xml" title="Sitemap" href="https://www.vallons-techniek.be/sitemap.xml" />
+  <link rel="icon"             href="/favicon.ico" sizes="any" />
+  <link rel="icon"             href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 </head>
 <body>
+  <p>Doorverwijzen naar <a href="vallons-techniek_over_ons.html">Vallons Techniek</a>…</p>
+  <script>
+    // JavaScript-redirect: sneller dan meta-refresh, beter voor gebruikers.
+    // noindex hierboven zorgt dat Google deze tussenliggende pagina niet indexeert.
+    window.location.replace('vallons-techniek_over_ons.html');
+  </script>
 </body>
 </html>

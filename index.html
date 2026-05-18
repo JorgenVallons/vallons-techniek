@@ -1383,6 +1383,35 @@
   }, { threshold: 0.08 });
   reveals.forEach(el => observer.observe(el));
 
+  // Footer: e-mail onthullen
+  let footerEmailRevealed = false;
+  function revealEmailFooter(e) {
+    const el = document.getElementById('footer-email');
+    if (!footerEmailRevealed) {
+      el.textContent = 'info@vallons-techniek.be';
+      el.href = 'mailto:info@vallons-techniek.be';
+      footerEmailRevealed = true;
+    } else {
+      window.location.href = 'mailto:info@vallons-techniek.be';
+    }
+  }
+
+  // Footer: telefoonnummer onthullen
+  let footerPhoneRevealed = false;
+  function revealPhoneFooter(e) {
+    const el = document.getElementById('footer-phone');
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      window.location.href = 'tel:+32493866101';
+    } else if (!footerPhoneRevealed) {
+      el.textContent = '+32 493 86 61 01';
+      el.href = 'tel:+32493866101';
+      footerPhoneRevealed = true;
+    } else {
+      window.location.href = 'tel:+32493866101';
+    }
+  }
+
   // Formulierverwerking: zie bovenstaand blok
 </script>
 </body>
